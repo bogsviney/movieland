@@ -40,7 +40,13 @@ public class MovieController {
     @GetMapping("genre/{genreId}")
     public List<Movie> getMoviesByGenreId(@PathVariable Long genreId) {
         Genre targetGenre = genreService.getById(genreId);
-        log.info("MOVIE CONTROLLER:: get all movies by {} genre", genreService.getById(genreId).getName());
+        log.info("MOVIE CONTROLLER: get all movies by {} genre", genreService.getById(genreId).getName());
         return targetGenre.getMovies();
+    }
+
+    @GetMapping(params = {"rating"})
+    public List<Movie> sortByRating(String rating) {
+        log.info("MOVIE CONTROLLER: sort by rating");
+        return movieService.sortByRating(rating);
     }
 }

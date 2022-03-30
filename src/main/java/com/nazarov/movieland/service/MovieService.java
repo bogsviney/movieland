@@ -32,4 +32,14 @@ public class MovieService {
     public Movie addMovie(Movie movie) {
         return movieRepository.save(movie);
     }
+
+    public List<Movie> sortByRating(String order) {
+        if (order.equals("asc")) {
+            return movieRepository.sortByRatingAsc();
+        } else if (order.equals("desc")) {
+            return movieRepository.sortByRatingDesc();
+        } else {
+            return null;
+        }
+    }
 }
