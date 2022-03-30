@@ -17,8 +17,12 @@ public class GenreService {
         return genreRepository.findAll();
     }
 
-    public Genre addGenre(Genre genre){
+    public Genre addGenre(Genre genre) {
         return genreRepository.save(genre);
+    }
+
+    public Genre getById(Long id) {
+        return genreRepository.getById(id);
     }
 
 }

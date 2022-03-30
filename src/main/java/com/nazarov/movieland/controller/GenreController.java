@@ -4,10 +4,7 @@ import com.nazarov.movieland.entity.Genre;
 import com.nazarov.movieland.service.GenreService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +20,12 @@ public class GenreController {
     public List<Genre> findAll() {
         log.info("GENRE CONTROLLER: get all genres");
         return genreService.findAll();
+    }
+
+    @GetMapping("{id}")
+    public Genre getById(@PathVariable Long id) {
+        log.info("GENRE CONTROLLER: get genre by id: {}", id);
+        return genreService.getById(id);
     }
 
     @PostMapping("add")

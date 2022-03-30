@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -28,7 +29,7 @@ public class Movie {
     @JoinTable(name = "movies_genres",
             joinColumns = {@JoinColumn(name = "movie_id")},
             inverseJoinColumns = {@JoinColumn(name = "genre_id")})
-    private Set<Genre> genres;
+    private Set<Genre> genres = new HashSet<>();
     private String description;
     private double rating;
     private double price;
