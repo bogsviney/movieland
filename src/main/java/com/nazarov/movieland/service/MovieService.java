@@ -42,4 +42,15 @@ public class MovieService {
             return null;
         }
     }
+
+    public List<Movie> sortByPrice(String order) {
+        if (order.equals("asc")) {
+            return movieRepository.sortByPriceAsc();
+        } else if (order.equals("desc")) {
+            return movieRepository.sortByPriceDesc();
+        } else {
+            return null;
+        }
+    }
 }
+

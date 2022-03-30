@@ -46,7 +46,13 @@ public class MovieController {
 
     @GetMapping(params = {"rating"})
     public List<Movie> sortByRating(String rating) {
-        log.info("MOVIE CONTROLLER: sort by rating");
+        log.info("MOVIE CONTROLLER: sort by rating in {} order", rating);
         return movieService.sortByRating(rating);
+    }
+
+    @GetMapping(params = {"price"})
+    public List<Movie> sortByPrice(String price) {
+        log.info("MOVIE CONTROLLER: sort by price in {} order", price);
+        return movieService.sortByPrice(price);
     }
 }

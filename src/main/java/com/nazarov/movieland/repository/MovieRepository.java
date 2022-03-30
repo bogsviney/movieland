@@ -15,5 +15,11 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query("select u from Movie u order by rating desc")
     List<Movie> sortByRatingDesc();
+
+    @Query("select u from Movie u order by price asc")
+    List<Movie> sortByPriceAsc();
+
+    @Query("select u from Movie u order by price desc")
+    List<Movie> sortByPriceDesc();
 }
 
