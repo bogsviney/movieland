@@ -5,6 +5,8 @@ import com.nazarov.movieland.repository.MovieRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -12,8 +14,22 @@ import java.util.List;
 public class MovieService {
     private final MovieRepository movieRepository;
 
-    public List<Movie> findAll(){
+    public List<Movie> findAll() {
         return movieRepository.findAll();
     }
 
+    public List<Movie> findThreeRandomMovies() {
+        List<Movie> allMovies = findAll();
+        List<Movie> randomMovies = new ArrayList<>();
+        Collections.shuffle(allMovies);
+
+        for (int i = 0; i < 3; i++) {
+            randomMovies.add(allMovies.get(i));
+        }
+        return randomMovies;
+    }
+
+    public Movie addMovie(Movie movie) {
+        return movieRepository.save(movie);
+    }
 }

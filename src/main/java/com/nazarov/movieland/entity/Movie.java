@@ -19,15 +19,7 @@ import java.util.Set;
 public class Movie {
 
     @Id
-    @SequenceGenerator(
-            name = "movies_sequence",
-            sequenceName = "movie_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "movies_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private int year;
