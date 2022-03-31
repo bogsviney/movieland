@@ -55,4 +55,10 @@ public class MovieController {
         log.info("MOVIE CONTROLLER: sort by price in {} order", price);
         return movieService.sortByPrice(price);
     }
+
+    @GetMapping("{id}")
+    public Movie getMovieById(@PathVariable Long id){
+        log.info("MOVIE CONTROLLER: find movie with id {}", id);
+        return movieService.getById(id);
+    }
 }

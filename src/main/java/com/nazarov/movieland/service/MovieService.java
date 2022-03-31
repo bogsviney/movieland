@@ -52,5 +52,9 @@ public class MovieService {
             return null;
         }
     }
+
+    public Movie getById(Long id) {
+        return movieRepository.getById(id);
+    }
 }
 
