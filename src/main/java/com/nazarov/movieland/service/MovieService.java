@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class MovieService {
+
+    public static final int QUANTITY_OF_RANDOM_MOVIES = 3;
+
     private final MovieRepository movieRepository;
     private CurrencyConverter currencyConverter = new CurrencyConverter();
 
@@ -22,15 +23,10 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    public List<Movie> findThreeRandomMovies() {
-        List<Movie> allMovies = findAll();
-        List<Movie> randomMovies = new ArrayList<>();
-        Collections.shuffle(allMovies);
-
-        for (int i = 0; i < 3; i++) {
-            randomMovies.add(allMovies.get(i));
-        }
-        return randomMovies;
+    public List<Movie> findRandomMovies() {
+        List<Movie> allMoviesRandomOrder = movieRepository.findRandomMovies();
+        List<Movie> result = allMoviesRandomOrder.subList(0, QUANTITY_OF_RANDOM_MOVIES);
+        return result;
     }
 
     public Movie addMovie(Movie movie) {

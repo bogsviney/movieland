@@ -26,9 +26,9 @@ public class MovieController {
     }
 
     @GetMapping("random")
-    public List<Movie> findThreeRandomMovies() {
-        log.info("MOVIE CONTROLLER: get three random movies");
-        return movieService.findThreeRandomMovies();
+    public List<Movie> findRandomMovies() {
+        log.info("MOVIE CONTROLLER: get random movies");
+        return movieService.findRandomMovies();
     }
 
     @PostMapping("add")
