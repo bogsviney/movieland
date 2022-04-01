@@ -1,18 +1,22 @@
 package com.nazarov.movieland.service;
 
+import com.nazarov.movieland.converter.CurrencyConverter;
 import com.nazarov.movieland.entity.Movie;
 import com.nazarov.movieland.repository.MovieRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MovieService {
     private final MovieRepository movieRepository;
+    private CurrencyConverter currencyConverter = new CurrencyConverter();
 
     public List<Movie> findAll() {
         return movieRepository.findAll();
@@ -55,6 +59,13 @@ public class MovieService {
 
     public Movie getById(Long id) {
         return movieRepository.getById(id);
+    }
+
+    public Movie getByIdWithCurrencyConvertation(Long id, String currency) {
+        Movie toConvert = movieRepository.getById(id);
+        double result = currencyConverter.convert(toConvert.getPrice(), currency);
+        toConvert.setPrice(new BigDecimal(result).setScale(2, RoundingMode.HALF_UP).doubleValue());
+        return toConvert;
     }
 }
 

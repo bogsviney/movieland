@@ -57,8 +57,14 @@ public class MovieController {
     }
 
     @GetMapping("{id}")
-    public Movie getMovieById(@PathVariable Long id){
+    public Movie getById(@PathVariable Long id){
         log.info("MOVIE CONTROLLER: find movie with id {}", id);
         return movieService.getById(id);
+    }
+
+    @GetMapping("{id}/{currency}")
+    public Movie getByIdWithCurrencyConvertation(@PathVariable Long id, @PathVariable String currency){
+        log.info("MOVIE CONTROLLER: find movie with id {} price in {}", id, currency);
+        return movieService.getByIdWithCurrencyConvertation(id,currency);
     }
 }

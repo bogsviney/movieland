@@ -1,5 +1,6 @@
 package com.nazarov.movieland.repository;
 
+import com.nazarov.movieland.entity.Genre;
 import com.nazarov.movieland.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MovieRepository extends JpaRepository<Movie, Long> {
+public interface MovieRepository extends JpaRepository<Movie,Long> {
 
     @Query("select u from Movie u order by rating asc")
     List<Movie> sortByRatingAsc();
@@ -21,5 +22,8 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query("select u from Movie u order by price desc")
     List<Movie> sortByPriceDesc();
+
+    @Query("select u from Movie u where id = ?1")
+    Movie getById(Long id);
 }
 
