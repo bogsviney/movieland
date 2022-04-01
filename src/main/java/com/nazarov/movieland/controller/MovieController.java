@@ -40,7 +40,7 @@ public class MovieController {
     @GetMapping("genre/{genreId}")
     public List<Movie> getMoviesByGenreId(@PathVariable Long genreId) {
         Genre targetGenre = genreService.getById(genreId);
-        log.info("MOVIE CONTROLLER: get all movies by {} genre", genreService.getById(genreId).getName());
+        log.info("MOVIE CONTROLLER: get all movies by {} genre", targetGenre.getName());
         return targetGenre.getMovies();
     }
 
@@ -62,8 +62,9 @@ public class MovieController {
         return movieService.getById(id);
     }
 
-    @GetMapping("{id}/{currency}")
-    public Movie getByIdWithCurrencyConvertation(@PathVariable Long id, @PathVariable String currency){
+    @GetMapping(value = "{id}", params = "currency")
+    @ResponseBody
+    public Movie getByIdWithCurrencyConvertation(@PathVariable Long id, @RequestParam String currency){
         log.info("MOVIE CONTROLLER: find movie with id {} price in {}", id, currency);
         return movieService.getByIdWithCurrencyConvertation(id,currency);
     }

@@ -15,6 +15,7 @@ import java.util.List;
 public class MovieService {
 
     public static final int QUANTITY_OF_RANDOM_MOVIES = 3;
+    public static final String ORDER_DESC = "desc";
 
     private final MovieRepository movieRepository;
     private CurrencyConverter currencyConverter = new CurrencyConverter();
@@ -24,7 +25,7 @@ public class MovieService {
     }
 
     public List<Movie> findRandomMovies() {
-        List<Movie> allMoviesRandomOrder = movieRepository.findRandomMovies();
+        List<Movie> allMoviesRandomOrder = movieRepository.findAllInRandomOrder();
         List<Movie> result = allMoviesRandomOrder.subList(0, QUANTITY_OF_RANDOM_MOVIES);
         return result;
     }
@@ -34,23 +35,11 @@ public class MovieService {
     }
 
     public List<Movie> sortByRating(String order) {
-        if (order.equals("asc")) {
-            return movieRepository.sortByRatingAsc();
-        } else if (order.equals("desc")) {
-            return movieRepository.sortByRatingDesc();
-        } else {
-            return null;
-        }
+        return orderCheck(order) ? movieRepository.sortByRatingDesc() : movieRepository.sortByRatingAsc();
     }
 
     public List<Movie> sortByPrice(String order) {
-        if (order.equals("asc")) {
-            return movieRepository.sortByPriceAsc();
-        } else if (order.equals("desc")) {
-            return movieRepository.sortByPriceDesc();
-        } else {
-            return null;
-        }
+        return orderCheck(order) ? movieRepository.sortByPriceDesc() : movieRepository.sortByPriceAsc();
     }
 
     public Movie getById(Long id) {
@@ -62,6 +51,10 @@ public class MovieService {
         double result = currencyConverter.convert(toConvert.getPrice(), currency);
         toConvert.setPrice(new BigDecimal(result).setScale(2, RoundingMode.HALF_UP).doubleValue());
         return toConvert;
+    }
+
+    public boolean orderCheck(String order) {
+        return (order.toLowerCase().equals(ORDER_DESC)) ? true : false;
     }
 }
 
