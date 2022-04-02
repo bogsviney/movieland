@@ -28,4 +28,11 @@ public class ReviewController {
         log.info("REVIEW CONTROLLER: new review added");
         return toSave;
     }
+
+    @DeleteMapping("review/{id}")
+    public void deleteReview(@PathVariable Long id){
+        reviewService.delete(id);
+        log.info("REVIEW CONTROLLER: review with id: {} has been deleted", id);
+    }
+
 }

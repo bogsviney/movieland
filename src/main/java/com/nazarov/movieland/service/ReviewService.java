@@ -29,4 +29,9 @@ public class ReviewService {
         log.info("REVIEW SERVICE: new review to --> {} <-- movie added", movie.getTitle());
         return review;
     }
+
+    public void delete(Long id){
+        reviewRepository.deleteById(id);
+        log.info("REVIEW SERVICE: review with id: {} has been deleted", id);
+    }
 }
