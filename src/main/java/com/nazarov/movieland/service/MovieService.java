@@ -56,5 +56,10 @@ public class MovieService {
     public boolean orderCheck(String order) {
         return (order.toLowerCase().equals(ORDER_DESC)) ? true : false;
     }
+
+    public List<Movie> findByTitleContaining(String title) {
+        title.toUpperCase();
+        return movieRepository.findByTitleContaining(title);
+    }
 }
 

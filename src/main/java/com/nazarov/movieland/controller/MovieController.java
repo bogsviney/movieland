@@ -68,4 +68,11 @@ public class MovieController {
         log.info("MOVIE CONTROLLER: find movie with id {} price in {}", id, currency);
         return movieService.getByIdWithCurrencyConvertation(id, currency);
     }
+
+    @GetMapping(value = "search", params = "title")
+    @ResponseBody
+    public List<Movie> searchByTitle(@RequestParam String title) {
+        log.info("MOVIE CONTROLLER: search movies by --> {} <--", title);
+        return movieService.findByTitleContaining(title);
+    }
 }

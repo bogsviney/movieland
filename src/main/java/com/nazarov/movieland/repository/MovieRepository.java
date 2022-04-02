@@ -3,6 +3,7 @@ package com.nazarov.movieland.repository;
 import com.nazarov.movieland.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query("select u from Movie u order by rand()")
     List<Movie> findAllInRandomOrder();
+
+    @Query("select u from Movie u where UPPER (title) like concat ('%',UPPER (:title),'%')")
+    List<Movie> findByTitleContaining(@Param("title") String title);
 }
 
 

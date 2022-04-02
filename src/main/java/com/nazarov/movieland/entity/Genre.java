@@ -31,5 +31,4 @@ public class Genre {
     public List<Movie> getMovies() {
         return movies;
     }
-
 }
