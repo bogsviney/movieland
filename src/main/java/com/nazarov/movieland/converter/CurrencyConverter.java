@@ -10,7 +10,7 @@ public class CurrencyConverter {
     private CourseExtractor extractor = new CourseExtractor();
 
     public double convert(double uah, String currency) {
-        double result = uah * extractor.extract(currency);
+        double result = uah / extractor.extract(currency);
         log.info("CURRENCY CONVERTER: convert {} UAH to {} = {} ", uah, currency, result);
         return result;
     }

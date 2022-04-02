@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,11 +37,8 @@ public class Movie {
             inverseJoinColumns = {@JoinColumn(name = "country_id")})
     private Set<Country> countries = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movie", orphanRemoval = true)
-    private Set<Review> reviews = new HashSet<>();
+    private List<Review> reviews;
     private String description;
     private double rating;
     private double price;
-
-
-
 }
