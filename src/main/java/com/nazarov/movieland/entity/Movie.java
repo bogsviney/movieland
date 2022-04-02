@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,13 +26,21 @@ public class Movie {
     private Long id;
     private String title;
     private int year;
-    private String country;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "movies_genres",
             joinColumns = {@JoinColumn(name = "movie_id")},
             inverseJoinColumns = {@JoinColumn(name = "genre_id")})
+
     private Set<Genre> genres = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "movies_countries",
+            joinColumns = {@JoinColumn(name = "movie_id")},
+            inverseJoinColumns = {@JoinColumn(name = "country_id")})
+    private Set<Country> countries = new HashSet<>();
     private String description;
     private double rating;
     private double price;
+
+
+
 }
