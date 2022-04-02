@@ -41,4 +41,5 @@ public class Movie {
     private String description;
     private double rating;
     private double price;
+    private boolean delete;
 }

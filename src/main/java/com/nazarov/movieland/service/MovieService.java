@@ -4,12 +4,14 @@ import com.nazarov.movieland.converter.CurrencyConverter;
 import com.nazarov.movieland.entity.Movie;
 import com.nazarov.movieland.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MovieService {
@@ -60,6 +62,16 @@ public class MovieService {
     public List<Movie> findByTitleContaining(String title) {
         title.toUpperCase();
         return movieRepository.findByTitleContaining(title);
+    }
+
+    public void markToDelete(Long id) {
+        movieRepository.markForDelete(id);
+        log.info("MOVIE SERVICE: mark movie with id {} to delete", id);
+    }
+
+    public void unMarkToDelete(Long id) {
+        movieRepository.unMarkForDelete(id);
+        log.info("MOVIE SERVICE: unmark movie with id {} to delete", id);
     }
 }
 

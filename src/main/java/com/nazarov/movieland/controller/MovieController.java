@@ -75,4 +75,16 @@ public class MovieController {
         log.info("MOVIE CONTROLLER: search movies by --> {} <--", title);
         return movieService.findByTitleContaining(title);
     }
+
+    @PostMapping("{id}/unmark")
+    public void unMarkToDelete(@PathVariable Long id) {
+        movieService.unMarkToDelete(id);
+        log.info("MOVIE CONTROLLER: unmark movie with id {} to delete", id);
+    }
+
+    @DeleteMapping("{id}")
+    public void markToDelete(@PathVariable Long id) {
+        movieService.markToDelete(id);
+        log.info("MOVIE CONTROLLER: mark movie with id {} to delete", id);
+    }
 }
