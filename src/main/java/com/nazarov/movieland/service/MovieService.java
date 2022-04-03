@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Slf4j
@@ -18,7 +21,7 @@ public class MovieService {
 
     public static final int QUANTITY_OF_RANDOM_MOVIES = 3;
     public static final String ORDER_DESC = "desc";
-
+    public static final LocalDateTime TIME_TO_DELETE_MARKED_ITEMS = LocalDateTime.of(LocalDate.now(), LocalTime.of(20, 15));
     private final MovieRepository movieRepository;
     private CurrencyConverter currencyConverter = new CurrencyConverter();
 
@@ -72,6 +75,23 @@ public class MovieService {
     public void unMarkToDelete(Long id) {
         movieRepository.unMarkForDelete(id);
         log.info("MOVIE SERVICE: unmark movie with id {} to delete", id);
+    }
+
+    public void findAndDeleteMarkedItems() {
+        deleteMarkedMovies(findMoviesWithDeleteMark());
+        log.info("MOVIE SERVICE: marked movies has been deleted");
+    }
+
+    List<Movie> findMoviesWithDeleteMark() {
+        return movieRepository.findMoviesWithDeleteMark();
+    }
+
+    void deleteMarkedMovies(List<Movie> markedMovies) {
+        Long id;
+        for (int i = 0; i < markedMovies.size(); i++) {
+            id = markedMovies.get(i).getId();
+            movieRepository.deleteById(id);
+        }
     }
 }
 

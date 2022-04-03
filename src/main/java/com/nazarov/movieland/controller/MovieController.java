@@ -87,4 +87,11 @@ public class MovieController {
         movieService.markToDelete(id);
         log.info("MOVIE CONTROLLER: mark movie with id {} to delete", id);
     }
+
+    //for test
+    @DeleteMapping("antidisestablishmentarianism")
+    public void deleteMarkedItems(){
+        movieService.findAndDeleteMarkedItems();
+        log.info("MOVIE CONTROLLER: marked movies has been deleted ");
+    }
 }

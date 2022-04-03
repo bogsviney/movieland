@@ -18,7 +18,8 @@ import java.util.Set;
 @Table(
         name = "movies"
 )
-public class Movie {
+public class
+Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +42,5 @@ public class Movie {
     private String description;
     private double rating;
     private double price;
-    private boolean delete;
+    private boolean deleteMark;
 }

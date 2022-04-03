@@ -49,6 +49,9 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
             nativeQuery = true
     )
     int unMarkForDelete(Long id);
+
+    @Query("select u from Movie u where delete_mark = true")
+    List <Movie> findMoviesWithDeleteMark();
 }
 
 
