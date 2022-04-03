@@ -21,11 +21,11 @@ public class MovieService {
 
     public static final int QUANTITY_OF_RANDOM_MOVIES = 3;
     public static final String ORDER_DESC = "desc";
-    public static final LocalDateTime TIME_TO_DELETE_MARKED_ITEMS = LocalDateTime.of(LocalDate.now(), LocalTime.of(20, 15));
     private final MovieRepository movieRepository;
     private CurrencyConverter currencyConverter = new CurrencyConverter();
 
     public List<Movie> findAll() {
+        log.info("MOVIE SERVICE: FIND ALL");
         return movieRepository.findAll();
     }
 
