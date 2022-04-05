@@ -52,6 +52,14 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query("select u from Movie u where delete_mark = true")
     List <Movie> findMoviesWithDeleteMark();
+
+    @Modifying
+    @Transactional
+    @Query(
+            value = "update movies set description = ?1 where id = ?2",
+            nativeQuery = true
+    )
+    int updateMovieDescriptionById(String description, Long id);
 }
 
 

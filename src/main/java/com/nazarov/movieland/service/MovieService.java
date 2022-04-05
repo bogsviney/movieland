@@ -7,11 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 @Slf4j
@@ -22,7 +17,7 @@ public class MovieService {
     public static final int QUANTITY_OF_RANDOM_MOVIES = 3;
     public static final String ORDER_DESC = "desc";
     private final MovieRepository movieRepository;
-    private CurrencyConverter currencyConverter = new CurrencyConverter();
+    private final CurrencyConverter currencyConverter;
 
     public List<Movie> findAll() {
         log.info("MOVIE SERVICE: FIND ALL");
@@ -53,8 +48,9 @@ public class MovieService {
 
     public Movie getByIdWithCurrencyConvertation(Long id, String currency) {
         Movie toConvert = movieRepository.getById(id);
-        double result = currencyConverter.convert(toConvert.getPrice(), currency);
-        toConvert.setPrice(new BigDecimal(result).setScale(2, RoundingMode.HALF_UP).doubleValue());
+        double uah = toConvert.getPrice();
+        double result = currencyConverter.convertNativeToForeign(uah, currency);
+        toConvert.setPrice(result);
         return toConvert;
     }
 
@@ -92,6 +88,10 @@ public class MovieService {
             id = markedMovies.get(i).getId();
             movieRepository.deleteById(id);
         }
+    }
+
+    public void editDescription(String description, Long id) {
+        movieRepository.updateMovieDescriptionById(description, id);
     }
 }
 

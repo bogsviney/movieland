@@ -1,19 +1,19 @@
-package com.nazarov.movieland.converter;
+package com.nazarov.movieland.converter.utils;
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 @Slf4j
-public class JSONFromURLGrabber {
+public class ContentFromURLGrabber {
 
     private static HttpURLConnection connection;
 
+    @SneakyThrows
     public String getJSONToStringFromURLRequest(String link) {
         BufferedReader reader;
         String line;
@@ -41,15 +41,11 @@ public class JSONFromURLGrabber {
                 reader.close();
             }
             log.info("response code: " + status);
-            log.info("JSON from https://bank.gov.ua/ is: {}",responseContent.toString());
+            log.info("Content from https://bank.gov.ua/ is: {}", responseContent.toString());
             return responseContent.toString();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+
         } finally {
             connection.disconnect();
         }
-        return null;
-    }
+      }
 }

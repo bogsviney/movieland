@@ -37,6 +37,12 @@ public class MovieController {
         return movieService.addMovie(movie);
     }
 
+    @PutMapping("{id}")
+    public void editMovieDescription(@PathVariable Long id, @RequestBody String description) {
+        movieService.editDescription(description, id);
+        log.info("MOVIE CONTROLLER: ---- movie has been updated");
+    }
+
     @GetMapping("genre/{genreId}")
     public List<Movie> getMoviesByGenreId(@PathVariable Long genreId) {
         Genre targetGenre = genreService.getById(genreId);
@@ -86,12 +92,5 @@ public class MovieController {
     public void markToDelete(@PathVariable Long id) {
         movieService.markToDelete(id);
         log.info("MOVIE CONTROLLER: mark movie with id {} to delete", id);
-    }
-
-    //for test
-    @DeleteMapping("antidisestablishmentarianism")
-    public void deleteMarkedItems(){
-        movieService.findAndDeleteMarkedItems();
-        log.info("MOVIE CONTROLLER: marked movies has been deleted ");
     }
 }

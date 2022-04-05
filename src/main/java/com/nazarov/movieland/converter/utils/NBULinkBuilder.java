@@ -1,4 +1,4 @@
-package com.nazarov.movieland.converter;
+package com.nazarov.movieland.converter.utils;
 
 import java.time.ZonedDateTime;
 import java.util.StringJoiner;
