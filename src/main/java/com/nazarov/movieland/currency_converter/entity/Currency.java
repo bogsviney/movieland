@@ -1,4 +1,4 @@
-package com.nazarov.movieland.converter.entity;
+package com.nazarov.movieland.currency_converter.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

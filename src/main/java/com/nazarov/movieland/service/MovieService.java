@@ -1,6 +1,6 @@
 package com.nazarov.movieland.service;
 
-import com.nazarov.movieland.converter.CurrencyConverter;
+import com.nazarov.movieland.currency_converter.CurrencyConverter;
 import com.nazarov.movieland.entity.Movie;
 import com.nazarov.movieland.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;

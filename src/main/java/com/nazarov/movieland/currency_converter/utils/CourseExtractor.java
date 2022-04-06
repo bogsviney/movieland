@@ -1,4 +1,4 @@
-package com.nazarov.movieland.converter.utils;
+package com.nazarov.movieland.currency_converter.utils;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,6 +1,6 @@
-package com.nazarov.movieland.converter;
+package com.nazarov.movieland.currency_converter;
 
-import com.nazarov.movieland.converter.service.CurrencyService;
+import com.nazarov.movieland.currency_converter.service.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

@@ -1,8 +1,8 @@
-package com.nazarov.movieland.converter.service;
+package com.nazarov.movieland.currency_converter.service;
 
-import com.nazarov.movieland.converter.entity.Currency;
-import com.nazarov.movieland.converter.repository.CurrencyRepository;
-import com.nazarov.movieland.converter.utils.CourseExtractor;
+import com.nazarov.movieland.currency_converter.entity.Currency;
+import com.nazarov.movieland.currency_converter.repository.CurrencyRepository;
+import com.nazarov.movieland.currency_converter.utils.CourseExtractor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
