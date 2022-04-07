@@ -18,7 +18,6 @@ public class MovieService {
     public static final String ORDER_DESC = "desc";
     private final MovieRepository movieRepository;
     private final CurrencyConverter currencyConverter;
-    private final GenreService genreService;
 
     public List<Movie> findAll() {
         return movieRepository.findAll();

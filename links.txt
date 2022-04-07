@@ -2,10 +2,11 @@
 Iteration 1:
 *******************************************************************************************************************************************************
 [b-1] Get all movies       * GET  *    http://localhost:8181/api/v1/movie
-[b-2] Get random movies    * GET  *      http://localhost:8181/api/v1/movie/random (get X random movies, quantity sets in MovieService)
+[b-2] Get random movies    * GET  *    http://localhost:8181/api/v1/movie/random (get X random movies, quantity sets in MovieService)
 [lg-1] Add file appender   *      *    DONE
 [b-3] Get all genres       * GET  *    http://localhost:8181/api/v1/genre
 [b-4] Get movies by genre  * ???  *    ????????????
+[t-1] Create genre cache   *      *    DONE
 [b-5] Implement sorting    * GET  *    http://localhost:8181/api/v1/movie/?rating={order}  (ASC(default)/DESC order)
                            * GET  *    http://localhost:8181/api/v1/movie/?price={order}  (ASC(default)/DESC order)
 *******************************************************************************************************************************************************
