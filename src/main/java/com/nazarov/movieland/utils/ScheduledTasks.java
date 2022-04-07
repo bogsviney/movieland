@@ -17,17 +17,18 @@ public class ScheduledTasks {
     private final MovieService movieService;
     private final CurrencyService currencyService;
 
+    private static final String CRON_15_31_EVERY_DAY = "0 31 15 * * *";
+    private static final String CRON_MIDNIGHT_EVERY_DAY = "0 00 00 * * *";
 
-
-    @Scheduled(cron = "0 31 15 * * *")  // Every day at 15:31 (NBU changes rate for tommorow at 15:30)
+    @Scheduled(cron = CRON_15_31_EVERY_DAY)  // Every day at 15:31 (NBU changes rate for tommorow at 15:30)
     public void currencyRatesRefresh() {
         currencyService.updateRatesInDatabase();
-        log.info("SCHEDULED TASKS: currency rates updated");
+        log.info("currency rates updated");
     }
 
-    @Scheduled(cron = "@midnight")
+    @Scheduled(cron = CRON_MIDNIGHT_EVERY_DAY)
     public void midnightTasks() {
         movieService.findAndDeleteMarkedItems();
-        log.info("SCHEDULED TASKS: time is {} ---> all marked movies has been deleted!", LocalTime.now());
+        log.info("time is {} ---> all marked movies has been deleted!", LocalTime.now());
     }
 }

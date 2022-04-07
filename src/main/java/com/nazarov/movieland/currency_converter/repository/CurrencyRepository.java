@@ -1,9 +1,7 @@
 package com.nazarov.movieland.currency_converter.repository;
 
 import com.nazarov.movieland.currency_converter.entity.Currency;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

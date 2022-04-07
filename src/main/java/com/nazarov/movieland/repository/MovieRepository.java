@@ -1,9 +1,7 @@
 package com.nazarov.movieland.repository;
 
 import com.nazarov.movieland.entity.Movie;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,9 +26,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query("select u from Movie u where id = ?1")
     Movie getById(Long id);
 
-    @Query("select u from Movie u order by rand()")
-    List<Movie> findAllInRandomOrder();
-
     @Query("select u from Movie u where UPPER (title) like concat ('%',UPPER (:title),'%')")
     List<Movie> findByTitleContaining(@Param("title") String title);
 
@@ -51,7 +46,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     int unMarkForDelete(Long id);
 
     @Query("select u from Movie u where delete_mark = true")
-    List <Movie> findMoviesWithDeleteMark();
+    List<Movie> findMoviesWithDeleteMark();
 
     @Modifying
     @Transactional

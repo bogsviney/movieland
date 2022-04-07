@@ -4,13 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nazarov.movieland.entity.Movie;
 import com.nazarov.movieland.service.MovieService;
 import lombok.SneakyThrows;
-import org.json.JSONObject;
-import org.json.XML;
+import org.json.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +32,7 @@ public class DataService {
     }
 
     public String convertJsonToXml(String json, String root) {
+        json = json.substring(1, json.length() - 1);
         JSONObject jsonObject = new JSONObject(json);
         String xml = XML_TEMPLATE + "<" + root + ">" + XML.toString(jsonObject) + "</" + root + ">";
         return xml;
@@ -60,5 +57,4 @@ public class DataService {
         String xml = convertJsonToXml(json, "root");
         return downloadFileWithData(XML_FILE_NAME, xml, XML_CONTENT_SUB_TYPE_NAME);
     }
-
 }

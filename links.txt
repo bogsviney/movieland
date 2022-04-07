@@ -1,0 +1,36 @@
+*******************************************************************************************************************************************************
+Iteration 1:
+*******************************************************************************************************************************************************
+[b-1] Get all movies       * GET  *    http://localhost:8181/api/v1/movie
+[b-2] Get random movies    * GET  *      http://localhost:8181/api/v1/movie/random (get X random movies, quantity sets in MovieService)
+[lg-1] Add file appender   *      *    DONE
+[b-3] Get all genres       * GET  *    http://localhost:8181/api/v1/genre
+[b-4] Get movies by genre  * ???  *    ????????????
+[b-5] Implement sorting    * GET  *    http://localhost:8181/api/v1/movie/?rating={order}  (ASC(default)/DESC order)
+                           * GET  *    http://localhost:8181/api/v1/movie/?price={order}  (ASC(default)/DESC order)
+*******************************************************************************************************************************************************
+Iteration 2:
+*******************************************************************************************************************************************************
+[b-6] Get movie by id      * GET  *    http://localhost:8181/api/v1/movie/{id}
+[b-7] Currency convertion  * GET  *    http://localhost:8181/api/v1/movie/{id}?currency={currency} (USD,EUR)
+[b-8] Add movie review     * POST *    http://localhost:8181/api/v1/movie/{id}/review (add review JSON)
+[b-9] Get all countries    * GET  *    http://localhost:8181/api/v1/country
+*******************************************************************************************************************************************************
+Iteration 3:
+*******************************************************************************************************************************************************
+[b-13] Implement search    * GET *     http://localhost:8181/api/v1/movie/search?title={title}
+[b-14] Mark/unmark         *DELETE*    http://localhost:8181/api/v1/movie/{id}
+ movie for removing        * POST *    http://localhost:8181/api/v1/movie/{id}/unmark
+*******************************************************************************************************************************************************
+Iteration 4:
+*******************************************************************************************************************************************************
+[b-15] Remove movie review *DELETE*    http://localhost:8181/api/v1/review/{id}
+[b-17] export all movies   * GET  *    http://localhost:8181/api/v1/export/download/json
+ from/to xml or json       * GET  *    http://localhost:8181/api/v1/export/download/xml
+*******************************************************************************************************************************************************
+
+GET: http://localhost:8181/api/v1/country/{id}
+GET: http://localhost:8181/api/v1/genre
+GET: http://localhost:8181/api/v1/genre/{id}
+GET: http://localhost:8181/api/v1/review
+GET: http://localhost:8181/api/v1/review/{id}

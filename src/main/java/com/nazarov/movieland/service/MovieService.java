@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -18,15 +18,19 @@ public class MovieService {
     public static final String ORDER_DESC = "desc";
     private final MovieRepository movieRepository;
     private final CurrencyConverter currencyConverter;
+    private final GenreService genreService;
 
     public List<Movie> findAll() {
-        log.info("MOVIE SERVICE: FIND ALL");
         return movieRepository.findAll();
     }
 
     public List<Movie> findRandomMovies() {
-        List<Movie> allMoviesRandomOrder = movieRepository.findAllInRandomOrder();
-        List<Movie> result = allMoviesRandomOrder.subList(0, QUANTITY_OF_RANDOM_MOVIES);
+        List<Movie> findAll = movieRepository.findAll();
+        List<Movie> result = new ArrayList<>();
+        List<Integer> list = getRandomNonRepeatingIntegers(QUANTITY_OF_RANDOM_MOVIES, 0, findAll().size());
+        for (int i = 0; i < list.size(); i++) {
+            result.add(findAll.get(list.get(i)));
+        }
         return result;
     }
 
@@ -65,17 +69,16 @@ public class MovieService {
 
     public void markToDelete(Long id) {
         movieRepository.markForDelete(id);
-        log.info("MOVIE SERVICE: mark movie with id {} to delete", id);
+        log.info("mark movie with id {} to delete", id);
     }
 
     public void unMarkToDelete(Long id) {
         movieRepository.unMarkForDelete(id);
-        log.info("MOVIE SERVICE: unmark movie with id {} to delete", id);
+        log.info("unmark movie with id {} to delete", id);
     }
 
     public void findAndDeleteMarkedItems() {
         deleteMarkedMovies(findMoviesWithDeleteMark());
-        log.info("MOVIE SERVICE: marked movies has been deleted");
     }
 
     List<Movie> findMoviesWithDeleteMark() {
@@ -92,6 +95,18 @@ public class MovieService {
 
     public void editDescription(String description, Long id) {
         movieRepository.updateMovieDescriptionById(description, id);
+    }
+
+    public List<Integer> getRandomNonRepeatingIntegers(int size, int min, int max) {
+        List<Integer> numbers = new ArrayList();
+        Random random = new Random();
+        while (numbers.size() < size) {
+            int randomNumber = random.nextInt((max - min)) + min;
+            if (!numbers.contains(randomNumber)) {
+                numbers.add(randomNumber);
+            }
+        }
+        return numbers;
     }
 }
 

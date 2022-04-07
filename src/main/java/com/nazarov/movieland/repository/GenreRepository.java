@@ -1,8 +1,7 @@
 package com.nazarov.movieland.repository;
 
 import com.nazarov.movieland.entity.Genre;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
