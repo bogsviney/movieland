@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.*;
 
 @Slf4j
@@ -68,16 +69,15 @@ public class MovieService {
 
     public void markToDelete(Long id) {
         movieRepository.markForDelete(id);
-        log.info("mark movie with id {} to delete", id);
     }
 
     public void unMarkToDelete(Long id) {
         movieRepository.unMarkForDelete(id);
-        log.info("unmark movie with id {} to delete", id);
     }
 
     public void findAndDeleteMarkedItems() {
         deleteMarkedMovies(findMoviesWithDeleteMark());
+        log.info("time is {} ---> delete all marked movies", LocalTime.now());
     }
 
     List<Movie> findMoviesWithDeleteMark() {
