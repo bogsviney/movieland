@@ -5,6 +5,9 @@ import com.nazarov.movieland.entity.Movie;
 import com.nazarov.movieland.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
@@ -16,12 +19,26 @@ import java.util.*;
 public class MovieService {
 
     public static final int QUANTITY_OF_RANDOM_MOVIES = 3;
+    public static final int QUANTITY_MOVIES_PER_PAGE = 5;
+    public static final int NUMBER_OF_DEFAULT_PAGE = 0;
+    public static final String DEFAULT_SORT_BY_PARAMETER = "id";
     public static final String ORDER_DESC = "desc";
+
     private final MovieRepository movieRepository;
     private final CurrencyConverter currencyConverter;
 
     public List<Movie> findAll() {
         return movieRepository.findAll();
+    }
+
+        public Page<Movie> findAllPaginatedAndSorted(Optional<Integer> page, Optional<String> sortBy) {
+        return movieRepository.findAll(
+                PageRequest.of(
+                        page.orElse(NUMBER_OF_DEFAULT_PAGE),
+                        QUANTITY_MOVIES_PER_PAGE,
+                        Sort.Direction.ASC, sortBy.orElse(DEFAULT_SORT_BY_PARAMETER)
+                )
+        );
     }
 
     public List<Movie> findRandomMovies() {

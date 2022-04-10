@@ -7,7 +7,8 @@ Iteration 1:
 [b-3] Get all genres       * GET  *    http://localhost:8181/api/v1/genre
 [b-4] Get movies by genre  * ???  *    ????????????
 [t-1] Create genre cache   *      *    DONE
-[b-5] Implement sorting    * GET  *    http://localhost:8181/api/v1/movie/?rating={order}  (ASC(default)/DESC order)
+[b-5] Implement sorting    * GET  *    http://localhost:8181/api/v1/movie?sortBy={parameter}&page={pageNumber}
+                           * GET  *    http://localhost:8181/api/v1/movie/?rating={order}  (ASC(default)/DESC order)
                            * GET  *    http://localhost:8181/api/v1/movie/?price={order}  (ASC(default)/DESC order)
 *******************************************************************************************************************************************************
 Iteration 2:
