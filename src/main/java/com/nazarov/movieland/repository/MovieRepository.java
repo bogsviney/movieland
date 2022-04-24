@@ -32,7 +32,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Modifying
     @Transactional
     @Query(
-            value = "update movies set delete = true where id = ?1",
+            value = "update movies set delete_mark = true where id = ?1",
             nativeQuery = true
     )
     int markForDelete(Long id);
@@ -40,7 +40,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Modifying
     @Transactional
     @Query(
-            value = "update movies set delete = false where id = ?1",
+            value = "update movies set delete_mark = false where id = ?1",
             nativeQuery = true
     )
     int unMarkForDelete(Long id);
