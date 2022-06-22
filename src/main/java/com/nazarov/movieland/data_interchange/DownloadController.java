@@ -21,12 +21,6 @@ public class DownloadController {
         return dataService.downloadJSON();
     }
 
-//    @SneakyThrows
-//    @GetMapping("/xml")
-//    public ResponseEntity<byte[]> downloadXMLData() {
-//        return dataService.downloadXML();
-//    }
-
     @SneakyThrows
     @GetMapping("/xml")
     public ResponseEntity<byte[]> downloadXMLData() {
